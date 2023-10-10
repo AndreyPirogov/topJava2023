@@ -23,6 +23,8 @@
             <th><p><javatime:format value="${meal.dateTime}" style="MS"/></p></th>
             <th><p>${meal.description}</p></th>
             <th><p>${meal.calories}</p></th>
+            <tn></th>
+            <th><a href="meals?action=delete&mealId=<c:out value="${meal.id}"/>">Delete</a></th>
         </tr>
     </c:forEach>
 </table>
