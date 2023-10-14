@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib uri="http://sargue.net/jsptags/time" prefix="javatime" %>
 <html lang="ru">
 <head>
@@ -7,8 +8,9 @@
 </head>
 <body>
 <h3><a href="index.html">Home</a></h3>
-<hr>
+
 <h2>Meals</h2>
+<h3><a href="meals?action=add">Add Meal</h3>
 
 <table cellpadding="7" border="2" width="100%">
   <tr>
@@ -23,7 +25,7 @@
             <th><p><javatime:format value="${meal.dateTime}" style="MS"/></p></th>
             <th><p>${meal.description}</p></th>
             <th><p>${meal.calories}</p></th>
-            <tn></th>
+            <th><a href="meals?action=edit&mealId=<c:out value="${meal.id}"/>">Edit</a></th>
             <th><a href="meals?action=delete&mealId=<c:out value="${meal.id}"/>">Delete</a></th>
         </tr>
     </c:forEach>

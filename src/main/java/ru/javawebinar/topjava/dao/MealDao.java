@@ -40,14 +40,42 @@ public class MealDao implements MealDaoInterface {
         return INSTANCE;
     }
 
-
+    @Override
     public List<Meal> getMeals() {
         log.debug("get Meals");
         return meals;
     }
 
+    @Override
+    public void add(LocalDateTime dateTime, String description, int calories) {
+        if(calories < 0) return;
+        log.debug("add Meals");
+        meals.add(new Meal(dateTime, description, calories));
+    }
+
+    @Override
     public void deleteMeal(int mealsId) {
         log.debug("delete meal: " + mealsId);
         meals.removeIf(m -> m.getId() == mealsId);
+    }
+
+    @Override
+    public Meal getMeal(int id) {
+        for (Meal m: meals) {
+            if (m.getId() == id) return m;
+        }
+        return null;
+    }
+
+    @Override
+    public void update(int id, LocalDateTime dateTime, String description, int calories) {
+        for (Meal m: meals) {
+            if (m.getId() == id) {
+                meals.remove(m);
+                meals.add(new Meal(dateTime, description, calories));
+                return;
+            }
+        }
+
     }
 }
